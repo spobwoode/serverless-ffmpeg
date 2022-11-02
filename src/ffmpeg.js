@@ -47,7 +47,7 @@ export function ffprobe(file) {
   })
 }
 
-export function ffmpeg(file, extension, ffmpegArgs) {
+export function ffmpeg(mp3file, pngfile, extension, ffmpegArgs) {
   return new Promise((resolve, reject) => {
 
     // Create output dir
@@ -60,10 +60,14 @@ export function ffmpeg(file, extension, ffmpegArgs) {
       '-y',
       '-loglevel',
       'warning',
+      '-loop',
+      '1',
       '-i',
-      file,
+      pngfile,
+      '-i',
+      mp3file,
       ...(ffmpegArgs || []),
-      `${join(outputDirectory, basename(file, extname(file)))}.${extension}`,
+      `${join(outputDirectory, basename(pngfile, extname(pngfile)))}.${extension}`,
     ]
 
     console.log('Running: ffmpeg', args.join(' '))

@@ -5,8 +5,9 @@ memorySize: 1024
 stage: dev
 
 # Both these buckets will be created
-source_bucket: ffmpeg-input-bucket-abc-123
-destination_bucket: ffmpeg-output-bucket-abc-123
+source_bucket: ffmpeg-input-bucket-abc-12345
+destination_bucket: ffmpeg-output-bucket-abc-12345
 
 # This will transcode audio into hls format
-ffmpeg_params: "-b:a 64k -f hls -hls_time 10.0 -hls_list_size 0"
+# ffmpeg_params: "-b:a 64k -f hls -hls_time 10.0 -hls_list_size 0"
+ffmpeg_params: "-c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest"

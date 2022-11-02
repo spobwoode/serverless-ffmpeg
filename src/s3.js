@@ -5,6 +5,17 @@ import {tmpdir} from 'os'
 
 const s3 = new AWS.S3()
 
+export async function fileExists(Bucket, Key) {
+  try {
+    await s3.headObject(params).promise();
+    const signedUrl = s3.getSignedUrl('getObject', params);
+    // Do stuff with signedUrl
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 export function download(Bucket, Key) {
   console.log(`Downloading file: ${Key} from bucket: ${Bucket}`)
 
